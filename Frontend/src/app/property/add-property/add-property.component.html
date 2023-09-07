@@ -5,8 +5,7 @@
     </div>
 
     <div class="card-body">
-        <form>
-
+        <form (ngSubmit)="onSubmit(Form)" #Form="ngForm">
             <div class="form-group col-12">
                 <label for="name">Name</label>
                 <input type="text" class="form-control">
@@ -17,16 +16,15 @@
                 <input type="text" class="form-control">
             </div>
 
-            <div class="form-group col-12">
+            <div class="form-group price col-12">
                 <label for="price">Price</label>
                 <input type="text" class="form-control">
             </div>
 
             <div class="form-group col-12">
-                <button type="submit" class="btn btn-primary mr-6">Save</button>
+                <button type="submit" class="btn btn-primary save-button">Save</button>
                 <button type="reset" class="btn btn-primary">Cancel</button>
             </div>
-
         </form>
 
     </div>
