@@ -22,3 +22,11 @@
 .form-group.price {
     margin-bottom: 15px;
 }
+
+.ng-invalid.ng-touched {
+    border-color: red;
+}
+
+.error-block {
+    color: red;
+}
