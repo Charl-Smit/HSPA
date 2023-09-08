@@ -8,17 +8,17 @@
         <form (ngSubmit)="onSubmit(Form)" #Form="ngForm">
             <div class="form-group col-12">
                 <label for="name">Name</label>
-                <input type="text" class="form-control">
+                <input type="text" class="form-control" ngModel name="Name">
             </div>
 
             <div class="form-group col-12">
                 <label for="type">Type</label>
-                <input type="text" class="form-control">
+                <input type="text" class="form-control" ngModel name="Type">
             </div>
 
             <div class="form-group price col-12">
                 <label for="price">Price</label>
-                <input type="text" class="form-control">
+                <input type="text" class="form-control" ngModel name="Price">
             </div>
 
             <div class="form-group col-12">
