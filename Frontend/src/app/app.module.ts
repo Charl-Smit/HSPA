@@ -14,12 +14,16 @@ import { AddPropertyComponent } from './property/add-property/add-property.compo
 import { RouterModule } from '@angular/router';
 import { PropertyDetailComponent } from './property/property-detail/property-detail.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { UserLoginComponent } from './user/user-login/user-login.component';
+import { UserRegisterComponent } from './user/user-register/user-register.component';
 
 const appRoutes: Routes = [
   {path: '', component: PropertyListComponent},
   {path: 'rent-property', component: PropertyListComponent},
   {path: 'add-property', component: AddPropertyComponent},
   {path: 'property-detail/:id', component: PropertyDetailComponent},
+  {path: 'user/login', component: UserLoginComponent},
+  {path: 'user/register', component: UserRegisterComponent},
   {path: '**', component: PageNotFoundComponent}
 
 ]
@@ -32,7 +36,9 @@ const appRoutes: Routes = [
     NavBarComponent,
     AddPropertyComponent,
     PropertyDetailComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    UserLoginComponent,
+    UserRegisterComponent
   ],
   imports: [
     BrowserModule,
