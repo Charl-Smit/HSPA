@@ -3,14 +3,19 @@
         <div class="card m-auto">
 
             <div class="card-header">
-                register
+                Register
             </div>
 
             <div class="card-body">
-                <form>
+                <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
                     <div class="form-group col-12">
-                        <label for="name" class="form-label">Email</label>
-                        <input type="text" class="form-control">
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" class="form-control" formControlName="userName">
+                    </div>
+
+                    <div class="form-group col-12">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="text" class="form-control" formControlName="email">
                     </div>
 
                     <div class="form-group col-12">
@@ -23,15 +28,18 @@
                         <input type="text" class="form-control">
                     </div>
 
-                    <div class="form-group col-12">
+                    <div class="form-group col-12 btn-mobilespace">
                         <label for="mobile" class="form-label">Mobile</label>
                         <input type="text" class="form-control">
                     </div>
 
                     <div class="form-group col-12">
-                        <button type="submit" class="btn btn-primary">Save</button>
-                        <button type="reset" class="btn btn-secondary ml-2">Cancel</button>
+                        <button type="submit" class="btn btn-primary btn-space">Save</button>
+                        <button type="reset" class="btn btn-secondary">Cancel</button>
                     </div>
+
+                    Form Values: {{registrationForm.value | json}} <br>
+                    Form Status: {{registrationForm.valid}}
                 </form>
             </div>
 
