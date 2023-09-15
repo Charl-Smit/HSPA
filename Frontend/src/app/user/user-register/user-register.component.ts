@@ -19,6 +19,8 @@ export class UserRegisterComponent implements OnInit {
       confirmPassword: new FormControl(null, [Validators.required]),
       mobile: new FormControl(null, [Validators.required, Validators.maxLength(10)])
     }, this.passwordMatchingValidator);
+
+    this.registrationForm.controls['userName'].setValue('Default Value');
   }
 
   onSubmit() {
