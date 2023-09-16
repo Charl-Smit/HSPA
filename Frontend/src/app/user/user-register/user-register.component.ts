@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators, AbstractControl, ValidationErrors } from '@angular/forms'
+import { FormGroup, FormControl, Validators, AbstractControl, FormBuilder, ValidationErrors } from '@angular/forms'
 
 @Component({
   selector: 'app-user-register',
@@ -9,22 +9,33 @@ import { FormGroup, FormControl, Validators, AbstractControl, ValidationErrors }
 export class UserRegisterComponent implements OnInit {
 
   registrationForm: FormGroup = new FormGroup({})
-  constructor() {}
+  constructor(private fb: FormBuilder) {}
 
   ngOnInit() {
-    this.registrationForm = new FormGroup( {
-      userName: new FormControl('Mark', Validators.required),
-      email: new FormControl(null, [Validators.required, Validators.email]),
-      password: new FormControl(null, [Validators.required, Validators.minLength(8)]),
-      confirmPassword: new FormControl(null, [Validators.required]),
-      mobile: new FormControl(null, [Validators.required, Validators.maxLength(10)])
-    }, this.passwordMatchingValidator);
+    // this.registrationForm = new FormGroup( {
+    //   userName: new FormControl('Mark', Validators.required),
+    //   email: new FormControl(null, [Validators.required, Validators.email]),
+    //   password: new FormControl(null, [Validators.required, Validators.minLength(8)]),
+    //   confirmPassword: new FormControl(null, [Validators.required]),
+    //   mobile: new FormControl(null, [Validators.required, Validators.maxLength(10)])
+    // }, this.passwordMatchingValidator);
 
+    this.createRegistrationForm();
     this.registrationForm.controls['userName'].setValue('Default Value');
   }
 
   onSubmit() {
     console.log(this.registrationForm)
+  }
+
+  createRegistrationForm() {
+    this.registrationForm = this.fb.group({
+      userName: [null, Validators.required],
+      email: [null, [Validators.required, Validators.email]],
+      password: [null, [Validators.required, Validators.minLength(8)]],
+      confirmpassword: [null, Validators.required],
+      mobile: [null, [Validators.required, Validators.maxLength(10)]],
+    }, {Validators: this.passwordMatchingValidator});
   }
 
   passwordMatchingValidator(fg: AbstractControl): ValidationErrors | null {
