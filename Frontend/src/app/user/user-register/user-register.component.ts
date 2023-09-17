@@ -1,6 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, AbstractControl, FormBuilder, ValidationErrors } from '@angular/forms'
 
+interface User {
+  userName: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+  mobile: string;
+}
+
 @Component({
   selector: 'app-user-register',
   templateUrl: './user-register.component.html',
@@ -11,21 +19,17 @@ export class UserRegisterComponent implements OnInit {
   registrationForm: FormGroup = new FormGroup({})
   constructor(private fb: FormBuilder) {}
 
-  ngOnInit() {
-    // this.registrationForm = new FormGroup( {
-    //   userName: new FormControl('Mark', Validators.required),
-    //   email: new FormControl(null, [Validators.required, Validators.email]),
-    //   password: new FormControl(null, [Validators.required, Validators.minLength(8)]),
-    //   confirmPassword: new FormControl(null, [Validators.required]),
-    //   mobile: new FormControl(null, [Validators.required, Validators.maxLength(10)])
-    // }, this.passwordMatchingValidator);
+  user: any = {};
 
+  ngOnInit() {
     this.createRegistrationForm();
     this.registrationForm.controls['userName'].setValue('Default Value');
   }
 
   onSubmit() {
     console.log(this.registrationForm)
+    this.user = Object.assign(this.user, this.registrationForm.value);
+    this.addUser(this.user);
   }
 
   createRegistrationForm() {
@@ -33,9 +37,9 @@ export class UserRegisterComponent implements OnInit {
       userName: [null, Validators.required],
       email: [null, [Validators.required, Validators.email]],
       password: [null, [Validators.required, Validators.minLength(8)]],
-      confirmpassword: [null, Validators.required],
+      confirmPassword: [null, Validators.required],
       mobile: [null, [Validators.required, Validators.maxLength(10)]],
-    }, {Validators: this.passwordMatchingValidator});
+    }, {validators: this.passwordMatchingValidator});
   }
 
   passwordMatchingValidator(fg: AbstractControl): ValidationErrors | null {
@@ -63,6 +67,16 @@ export class UserRegisterComponent implements OnInit {
 
   get confirmPassword() {
     return this.registrationForm.get('confirmPassword') as FormControl;
+  }
+
+  addUser(user: any) {
+    let users: any[] = JSON.parse(localStorage.getItem('Users') || '[]');
+    if (!Array.isArray(users)) {
+      users = [];
+    }
+    users.push(user);
+    localStorage.setItem('Users', JSON.stringify(users));
+    this.registrationForm.reset();
   }
 
 }
