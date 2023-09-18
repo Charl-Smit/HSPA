@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, AbstractControl, FormBuilder, ValidationErrors } from '@angular/forms'
 import { UserServiceService } from 'src/app/services/user-service.service';
+import { User } from 'src/app/model/user';
 
 @Component({
   selector: 'app-user-register',
@@ -12,7 +13,9 @@ export class UserRegisterComponent implements OnInit {
   registrationForm: FormGroup = new FormGroup({})
   constructor(private fb: FormBuilder, private userService: UserServiceService) {}
 
-  user: any = {};
+  user: any;
+
+  userSubmitted: boolean = false;
 
   ngOnInit() {
     this.createRegistrationForm();
@@ -20,10 +23,14 @@ export class UserRegisterComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.registrationForm)
-    this.user = Object.assign(this.user, this.registrationForm.value);
-    this.userService.addUser(this.user);
-    this.registrationForm.reset();
+    console.log(this.registrationForm.value);
+    this.userSubmitted = true;
+    if(this.registrationForm.valid) {
+      // this.user = Object.assign(this.user, this.registrationForm.value);
+      this.userService.addUser(this.userData());
+      this.registrationForm.reset();
+      this.userSubmitted = false;
+    }
   }
 
   createRegistrationForm() {
@@ -47,6 +54,15 @@ export class UserRegisterComponent implements OnInit {
     return null;
   }
 
+  userData(): User {
+    return this.user = {
+      userName: this.userName.value,
+      email: this.email.value,
+      password: this.password.value,
+      mobile: this.mobile.value,
+    }
+  }
+
   get userName() {
     return this.registrationForm.get('userName') as FormControl;
   }
@@ -61,6 +77,10 @@ export class UserRegisterComponent implements OnInit {
 
   get confirmPassword() {
     return this.registrationForm.get('confirmPassword') as FormControl;
+  }
+
+  get mobile() {
+    return this.registrationForm.get('mobile') as FormControl;
   }
 
 }
