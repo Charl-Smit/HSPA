@@ -1,13 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, AbstractControl, FormBuilder, ValidationErrors } from '@angular/forms'
-
-interface User {
-  userName: string;
-  email: string;
-  password: string;
-  confirmPassword: string;
-  mobile: string;
-}
+import { UserServiceService } from 'src/app/services/user-service.service';
 
 @Component({
   selector: 'app-user-register',
@@ -17,7 +10,7 @@ interface User {
 export class UserRegisterComponent implements OnInit {
 
   registrationForm: FormGroup = new FormGroup({})
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private userService: UserServiceService) {}
 
   user: any = {};
 
@@ -29,7 +22,8 @@ export class UserRegisterComponent implements OnInit {
   onSubmit() {
     console.log(this.registrationForm)
     this.user = Object.assign(this.user, this.registrationForm.value);
-    this.addUser(this.user);
+    this.userService.addUser(this.user);
+    this.registrationForm.reset();
   }
 
   createRegistrationForm() {
@@ -67,16 +61,6 @@ export class UserRegisterComponent implements OnInit {
 
   get confirmPassword() {
     return this.registrationForm.get('confirmPassword') as FormControl;
-  }
-
-  addUser(user: any) {
-    let users: any[] = JSON.parse(localStorage.getItem('Users') || '[]');
-    if (!Array.isArray(users)) {
-      users = [];
-    }
-    users.push(user);
-    localStorage.setItem('Users', JSON.stringify(users));
-    this.registrationForm.reset();
   }
 
 }
