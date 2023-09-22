@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms'
+import { AuthServiceService } from 'src/app/services/auth.service.service';
 
 @Component({
   selector: 'app-user-login',
@@ -7,7 +8,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms'
   styleUrls: ['./user-login.component.scss']
 })
 export class UserLoginComponent implements OnInit {
-  constructor() {}
+  constructor(private authService: AuthServiceService) {}
 
   userSubmitted = false;
   loginForm!: FormGroup;
@@ -23,6 +24,15 @@ export class UserLoginComponent implements OnInit {
     this.userSubmitted = true;
     if (this.loginForm.valid) {
       console.log(this.loginForm.value);
+    }
+
+    const token = this.authService.authUser(this.loginForm.value);
+    if(token) {
+      localStorage.setItem('token', token.userName)
+      console.log('Login Successful')
+    }
+    else {
+      console.log('Login Failed')
     }
   }
 }
