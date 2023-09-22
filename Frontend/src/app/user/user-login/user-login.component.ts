@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms'
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthServiceService } from 'src/app/services/auth.service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-login',
@@ -8,7 +9,8 @@ import { AuthServiceService } from 'src/app/services/auth.service.service';
   styleUrls: ['./user-login.component.scss']
 })
 export class UserLoginComponent implements OnInit {
-  constructor(private authService: AuthServiceService) {}
+  constructor(private authService: AuthServiceService,
+              private router: Router) {}
 
   userSubmitted = false;
   loginForm!: FormGroup;
@@ -30,6 +32,7 @@ export class UserLoginComponent implements OnInit {
     if(token) {
       localStorage.setItem('token', token.userName)
       console.log('Login Successful')
+      this.router.navigate(['/']);
     }
     else {
       console.log('Login Failed')
