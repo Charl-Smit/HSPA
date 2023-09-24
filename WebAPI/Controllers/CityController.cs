@@ -9,7 +9,7 @@ namespace WebAPI.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<string>> Getstrings()
         {
-            return new string[] {"Atlanta", "New York"};
+            return new string[] {"Atlanta", "New York", "Chicago"};
         }
     }
     
