@@ -7,8 +7,13 @@ import { Component } from '@angular/core';
 })
 export class NavBarComponent {
 
+  loggedinUser!: string;
+
+  constructor() {}
+
   loggedin() {
-    return localStorage.getItem('token');
+    this.loggedinUser = localStorage.getItem('token') || '';
+    return this.loggedinUser;
   }
 
   onLogout() {
