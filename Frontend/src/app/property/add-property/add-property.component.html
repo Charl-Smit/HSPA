@@ -34,15 +34,26 @@
                                 Please provide the price.
                             </span>
                         </div>
-            
-                        <div class="form-group col-12">
-                            <button [disabled]="!Form.valid" type="button" class="btn btn-primary save-button btn-block" (click)="selectTab(1)">Next</button>
-                        </div>
+
+                    <button [disabled]="!Form.valid" type="button" class="btn btn-primary save-button btn-block" (click)="selectTab(1)">Next</button>
+                        
                     </tab>
-                    <tab heading="Pricing and Area">Pricing Information</tab>
-                    <tab heading="Address">Address</tab>
-                    <tab heading="Other Details">Other Details</tab>
-                    <tab heading="Photos">Upload Photos</tab>
+                    <tab heading="Pricing and Area">
+                        Pricing Information
+                        <button [disabled]="!Form.valid" type="button" class="btn btn-primary save-button btn-block" (click)="selectTab(1)">Next</button>
+                    </tab>
+                    <tab heading="Address">
+                        Address
+                        <button [disabled]="!Form.valid" type="button" class="btn btn-primary save-button btn-block" (click)="selectTab(2)">Next</button>
+                    </tab>
+                    <tab>
+                        heading="Other Details">Other Details
+                        <button [disabled]="!Form.valid" type="button" class="btn btn-primary save-button btn-block" (click)="selectTab(3)">Next</button>
+                    </tab>
+                    <tab heading="Photos">
+                        Upload Photos
+                        <button [disabled]="!Form.valid" type="button" class="btn btn-primary save-button btn-block" (click)="selectTab(4)">Next</button>
+                    </tab>
                 </tabset>
 
             </div>
