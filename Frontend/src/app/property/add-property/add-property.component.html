@@ -60,7 +60,7 @@
                             <input type="text" class="form-control">
                         </div>
 
-                        <div class="form-group col-12">
+                        <div class="form-group col-12 carpet-area">
                             <label>Carpet Area in Square Feet</label>
                             <input type="text" class="form-control">
                         </div>
@@ -87,7 +87,7 @@
 
                         <div class="form-group col-12">
                             <label>Landmark</label>
-                            <input type="text" class="form-control">
+                            <input type="text" class="form-control carpet-area">
                         </div>
                         <button [disabled]="!Form.valid" type="button" class="btn btn-primary save-button btn-block" (click)="selectTab(3)">Next</button>
                         <button [disabled]="!Form.valid" type="button" class="btn btn-primary save-button btn-block" (click)="selectTab(1)">Back</button>
@@ -124,7 +124,7 @@
                             <input type="text" class="form-control">
                         </div>
 
-                        <div class="form-group col-12">
+                        <div class="form-group col-12 carpet-area">
                             <label>Description</label>
                             <textarea type="text" class="form-control" rows="6"></textarea>
                         </div>
@@ -133,7 +133,12 @@
                     </tab>
 
                     <tab heading="Photos">
-                        Upload Photos
+                        <div class="form-group col-12">
+                            <div class="photo-control carpet-area">
+                                <button class="mt-5" type="button">Upload</button> <br>
+                            </div>
+                        </div>
+                        This is under construction.
                         <button [disabled]="!Form.valid" type="button" class="btn btn-primary save-button btn-block" (click)="selectTab(3)">Back</button>
                     </tab>
                 </tabset>
