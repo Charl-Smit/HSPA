@@ -13,8 +13,10 @@
                         <div class="form-group col-12">
                             <p>I want to</p>
                             <div class="btn-group" btnRadioGroup>
-                                <label class="btn btn-outline-primary Sell-Rent-Button" btnRadio="1" role="button" name="SellRent">Sell</label>
-                                <label class="btn btn-outline-primary" btnRadio="2" role="button" name="SellRent">Rent</label>
+                                <label
+                                *ngFor="let option of ['Sell', 'Rent']"
+                                class="btn btn-outline-primary Sell-Rent-Button"
+                                [btnRadio]="option" tabindex="0" role="button" name="SellRent">{{option}}</label>
                             </div>
                         </div>
 
@@ -28,7 +30,27 @@
                             </div>
                         </div>
 
-                        <label for="name">Name</label>
+                        <div class="form-group col-12">
+                            <p>Property Type</p>
+                            <div class="btn-group" btnRadioGroup>
+                                <label
+                                *ngFor="let ptype of propertyTypes"
+                                class="btn btn-outline-primary Sell-Rent-Button"
+                                [btnRadio]="ptype" tabindex="0" role="button" name="SellRent">{{ptype}}</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group col-12">
+                            <p>Furnished Type</p>
+                            <div class="btn-group" btnRadioGroup>
+                                <label
+                                *ngFor="let ftype of furnishTypes"
+                                class="btn btn-outline-primary Sell-Rent-Button"
+                                [btnRadio]="ftype" tabindex="0" role="button" name="SellRent">{{ftype}}</label>
+                            </div>
+                        </div>
+
+                        <label for="name">in Building/Society/Project</label>
                             <input type="text" class="form-control" #propName="ngModel" ngModel name="Name" required minlength="5">
                             <span *ngIf="!propName.valid && propName.touched" class="error-block">
                                 <span *ngIf="propName.errors?.['required']"> Please provide a name.</span>
@@ -44,7 +66,7 @@
                         </div>
             
                         <div class="form-group price col-12">
-                            <label for="price">Price</label>
+                            <label for="price">City</label>
                             <input type="text" class="form-control" ngModel name="Price" required #priceInput="ngModel">
                             <span *ngIf="priceInput.touched && priceInput.invalid" class="error-block">
                                 Please provide the price.
@@ -112,12 +134,13 @@
                     <tab heading="Other Details">
                         Other Details
                         <div class="form-group col-12">
-                            <label>Ready To Move</label>
-                            <input type="radio" id='yes' value='1' name="RTM">
-                            <label class="m-2">Yes</label>
-
-                            <input type="radio" id="No" value='2' name="RTM">
-                            <label class="m-2">No</label>
+                            <p>Ready To Move</p>
+                            <div class="btn-group" btnRadioGroup>
+                                <label
+                                *ngFor="let option of ['Yes', 'No']"
+                                class="btn btn-outline-primary Sell-Rent-Button"
+                                [btnRadio]="option" tabindex="0" role="button" name="RTM">{{option}}</label>
+                            </div>
                         </div>
 
                         <div class="form-group col-3">
@@ -130,14 +153,24 @@
                             <input type="text" class="form-control">
                         </div>
 
-                        <div class="form-group col12">
-                            <label>Gated Community</label>
-                            <input type="text" class="form-control">
+                        <div class="form-group col-12">
+                            <p>Gated Community</p>
+                            <div class="btn-group" btnRadioGroup>
+                                <label
+                                *ngFor="let option of ['Yes', 'No']"
+                                class="btn btn-outline-primary Sell-Rent-Button"
+                                [btnRadio]="option" tabindex="0" role="button" name="GatedCommunity">{{option}}</label>
+                            </div>
                         </div>
 
                         <div class="form-group col-12">
-                            <label>Main Entrance</label>
-                            <input type="text" class="form-control">
+                            <p>Main Entrance</p>
+                            <div class="btn-group" btnRadioGroup>
+                                <label
+                                *ngFor="let option of ['North', 'South', 'East', 'West']"
+                                class="btn btn-outline-primary Sell-Rent-Button"
+                                [btnRadio]="option" tabindex="0" role="button" name="MaintEntrance">{{option}}</label>
+                            </div>
                         </div>
 
                         <div class="form-group col-12 carpet-area">
