@@ -21,6 +21,7 @@ import { UserServiceService } from './services/user-service.service';
 import { AuthServiceService } from './services/auth.service.service';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker'
 
 const appRoutes: Routes = [
   {path: '', component: PropertyListComponent},
@@ -56,6 +57,7 @@ const appRoutes: Routes = [
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
     ButtonsModule.forRoot(),
+    BsDatepickerModule.forRoot(),
 
   ],
   providers: [
