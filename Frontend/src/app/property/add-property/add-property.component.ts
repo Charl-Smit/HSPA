@@ -3,6 +3,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { HousingService } from 'src/app/services/housing.service';
 import { TabsetComponent } from 'ngx-bootstrap/tabs';
+import { IProperty } from '../IProperty.interface';
 
 @Component({
   selector: 'app-add-property',
@@ -17,15 +18,20 @@ export class AddPropertyComponent implements OnInit {
   propertyTypes: Array<string> = ['House', 'Apartment', 'Duplex']
   furnishTypes: Array<string> = ['Fully', 'Semi', 'Unfurnished']
 
+  propertyView: IProperty = {
+    Id: null,
+    SellRent: null, 
+    Name: '',
+    Type: null,
+    Price: null,
+  };
+
   constructor(private router: Router, private housingService: HousingService) {}
 
   ngOnInit() {
     this.housingService.getAllCities().subscribe(data => {
        console.log(data)
      })
-    setTimeout(() => {
-      this.addPropertyForm.controls['Name'].setValue('Default Value');
-    });
   }
 
   onBack() {
